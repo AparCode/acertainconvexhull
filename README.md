@@ -3,4 +3,4 @@ We want to do an interactive convex hull program that is a pedagogical aid for c
 We hope this program can impact students, teachers, and professionals looking to learn more about convex hull algorithms and how they work.
 
 
-Overview Presentation: [ https://docs.google.com/presentation/d/1IGUSs3jiw7tvtWwCVYN2ccwydr6XSA6lCWP3tGNwDr8/edit?usp=sharing](link)
+Overview Presentation: [Link](https://docs.google.com/presentation/d/1IGUSs3jiw7tvtWwCVYN2ccwydr6XSA6lCWP3tGNwDr8/edit?usp=sharing)
