@@ -7,8 +7,10 @@ import matrix as m
 
 points = []
 
+# function that runs when the user inputs a point
 def click(x,y):
     points.append((x,y))
+    m.write_points_to_file("input.txt", points)
     turtle.penup()
     if len(points) != 1:
         turtle.pendown()
@@ -16,8 +18,6 @@ def click(x,y):
     turtle.pendown()
     turtle.dot(5)
     turtle.penup()
-
-
 
 turtle.ht()
 turtle.onscreenclick(click,1)
