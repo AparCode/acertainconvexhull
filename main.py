@@ -2,43 +2,18 @@
 # @Author: Aparnaa Senthilnathan, Evan Prizel
 # ------------------------------------------------------------------------------------------
 
-import sys
-import matrix as m 
-from pyweb import pydom
+import turtle
 
-class Board:
-    def __init__(self):
-        self.board = pydom["table#board"]
-        self.status = pydom["h2#status"]
-        self.console = pydom["script#console"][0]
-        
-    def set_status(self, text):
-        self.status.html = text
-    
-    def add_point(self, event):
-        x = int(event.target.getAttribute('data-x'))
-        y = int(event.target.getAttribute('data-y'))
-        
-        print(x)
-        print(y)
-        
-    def reset(self, event):
-        self.console._js.terminal.clear()
-        
 
-start = Board()
-        
-# import keyboard
+def click(x,y):
+    turtle.penup()
+    turtle.goto(x,y)
+    turtle.pendown()
+    turtle.dot(5)
+    turtle.penup()
 
-# if len(sys.argv) == 1:
-#     points = []
-#     while True:
-#         if keyboard.read_key() == "x":
-#             break
-#         else:
-#             x = input("Please enter a x-coord:")
-#             y = input("Please enter a y-coord:")
-#             coord = (x,y)
-#             points.append(coord)
-            
-#             points = matrix_operation(coord, )
+turtle.ht()
+turtle.onscreenclick(click,1)
+turtle.listen()
+turtle.speed(50)
+turtle.done()
