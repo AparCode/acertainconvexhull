@@ -104,12 +104,12 @@
     </div>
     <div class="pseudocode-container">
         <h3>Pseudocode:</h3>
-        <div id="line1" class="pseudocode-line">Step 1) Initialize p as leftmost point.</div>
-        <div id="line2" class="pseudocode-line">Step 2) Do following while we don’t come back to the first (or leftmost) point:</div>
-        <div id="line2a" class="pseudocode-line">&nbsp;&nbsp;2.1) The next point q is the point such that the triplet (p, q, r) is counter clockwise for any other point r.</div>
-        <div id="line2a1" class="pseudocode-line">&nbsp;&nbsp;&nbsp;&nbsp;Initialize q as next point, then traverse all points. If orientation(p, i, q) is counter clockwise, update q as i.</div>
-        <div id="line2b" class="pseudocode-line">&nbsp;&nbsp;2.2) Store q as next of p in the output convex hull.</div>
-        <div id="line2c" class="pseudocode-line">&nbsp;&nbsp;2.3) Set p as q for next iteration.</div>
+        <div id="line1" class="pseudocode-line">1) Initialize point P as the leftmost point.</div>
+        <div id="line2" class="pseudocode-line">2) While we aren't back to the starting point, do:</div>
+        <div id="line2a" class="pseudocode-line">&nbsp;&nbsp;2.1) For all points:</div>
+        <div id="line2a1" class="pseudocode-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Find which point is rightmost of q</div>
+        <div id="line2b" class="pseudocode-line">&nbsp;&nbsp;2.2) Store q as the point after p in the output convex hull.</div>
+        <div id="line2c" class="pseudocode-line">&nbsp;&nbsp;2.3) Update p as q for next iteration.</div>
     </div>
 </body>
 </html>

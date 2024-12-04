@@ -120,30 +120,42 @@ function startJarvisMarch() {
 
 // Execute a single step of the Jarvis March algorithm based on the current step
 function stepJarvisMarch() {
+
+    // If current step is 0, add the leftmost point to the hull and update q
     if (currentStep === 0) {
-        currentLine = "line1"; // Highlight initializing p
+        currentLine = "line1"; // Highlight initializing p for the pseudocode
         hull.push(points[p]);
-        q = (p + 1) % points.length;
+        q = (p + 1) % points.length; // Set q to the next point in the hull, wrap if needed
         checkIndex = 0; // Reset the check index to the first point
         currentStep = 1;
+
+    // If current step is 1, check all points to find the next point in the hull
     } else if (currentStep === 1) {
-        currentLine = "line2a1"; // Highlight finding q
+        currentLine = "line2a1"; // Highlight searching for q, for the pseudocode
+
         if (checkIndex < points.length) {
-            // If the point is on the left side of the line from p to q, update q
+            // If the point we're checking (c) is on the right side of the line from p to q, update q to c
             if (ccw(points[p], points[checkIndex], points[q]) > 0) {
                 q = checkIndex;
             }
             checkIndex++;
+
         } else {
-            currentLine = "line2b"; // Highlight storing q
+
+            currentLine = "line2b"; // Highlight storing q for the pseudocode
             highlightPseudocode(); // Highlight the next line since this is an intermediate step
+
+            // Set p to q and then add q to the hull on the next iteration
             p = q;
+
+            // If we've returned to the leftmost point, stop the algorithm
             if (p === leftmost) {
-                // If we've returned to the leftmost point, stop the algorithm
                 isRunning = false;
                 currentLine = ""; // Clear the highlight
+
+            // Otherwise, move to the next point in the hull
             } else {
-                currentLine = "line2c"; // Highlight setting p = q for the next iteration
+                currentLine = "line2c"; // Highlight setting p = q for the pseudocode
             }
             currentStep = 0; // Move to the next point in the hull
         }
@@ -178,7 +190,6 @@ function transformPoints() {
 // Pause the algorithm
 function pause() {
     isPaused = true;
-    currentLine = ""; // Clear highlight during pause, might remove later
 }
 
 // Resume the algorithm
