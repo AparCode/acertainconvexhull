@@ -9,9 +9,13 @@
     <style>
         body {
             display: flex;
-            flex-direction: row; /* Arrange canvas and pseudocode side by side */
+            flex-direction: column;
             align-items: flex-start;
             margin: 0;
+        }
+        #canvas-pseudocode-container {
+            display: flex;
+            flex-direction: row; /* Arrange canvas and pseudocode side by side */
         }
         #canvas-container {
             margin-right: 20px; /* Add space between canvas and pseudocode */
@@ -93,10 +97,8 @@
             <span id="speedValue">10</span>
         </div>
     </div>
-    <div id="canvas-container">
-        <div id="canvas-placeholder">
-            <canvas></canvas>
-        </div>
+    <div id="canvas-pseudocode-container">
+        <div id="canvas-container"> </div>
         <div class="pseudocode-container">
             <h3>Pseudocode:</h3>
             <div id="line1" class="pseudocode-line">1) Initialize point P as the leftmost point.</div>
