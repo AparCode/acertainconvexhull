@@ -66,10 +66,20 @@
             background-color: yellow;
             font-weight: bold;
         }
+        #button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #matrix-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
-    <div id="canvas-container">
+    <div id="button-container">
         <div class="controls">
             <button id="startBtn" onclick="startJarvisMarch()">Start</button>
             <button id="pauseBtn" onclick="pause()">Pause</button>
@@ -82,9 +92,22 @@
             <input type="range" id="speedSlider" min="1" max="20" value="10" oninput="updateSpeed()">
             <span id="speedValue">10</span>
         </div>
+    </div>
+    <div id="canvas-container">
         <div id="canvas-placeholder">
             <canvas></canvas>
         </div>
+        <div class="pseudocode-container">
+            <h3>Pseudocode:</h3>
+            <div id="line1" class="pseudocode-line">1) Initialize point P as the leftmost point.</div>
+            <div id="line2" class="pseudocode-line">2) While we aren't back to the starting point, do:</div>
+            <div id="line2a" class="pseudocode-line">&nbsp;&nbsp;2.1) For all points:</div>
+            <div id="line2a1" class="pseudocode-line">&nbsp;&nbsp;&nbsp;&nbsp;2.1a) Find which point is rightmost of q</div>
+            <div id="line2b" class="pseudocode-line">&nbsp;&nbsp;2.2) Store q as the point after p in the output convex hull.</div>
+            <div id="line2c" class="pseudocode-line">&nbsp;&nbsp;2.3) Update p as q for next iteration.</div>
+        </div>
+    </div>
+    <div id="matrix-container">
         <div class="matrix-container">
             <h3>3x3 Transformation Matrix</h3>
             <div class="matrix-inputs">
@@ -106,15 +129,6 @@
             </div>
             <button id="transformBtn" onclick="transformPoints()">Transform Points</button>
         </div>
-    </div>
-    <div class="pseudocode-container">
-        <h3>Pseudocode:</h3>
-        <div id="line1" class="pseudocode-line">1) Initialize point P as the leftmost point.</div>
-        <div id="line2" class="pseudocode-line">2) While we aren't back to the starting point, do:</div>
-        <div id="line2a" class="pseudocode-line">&nbsp;&nbsp;2.1) For all points:</div>
-        <div id="line2a1" class="pseudocode-line">&nbsp;&nbsp;&nbsp;&nbsp;2.1a) Find which point is rightmost of q</div>
-        <div id="line2b" class="pseudocode-line">&nbsp;&nbsp;2.2) Store q as the point after p in the output convex hull.</div>
-        <div id="line2c" class="pseudocode-line">&nbsp;&nbsp;2.3) Update p as q for next iteration.</div>
     </div>
 </body>
 </html>
