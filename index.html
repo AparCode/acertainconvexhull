@@ -1,18 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Sketch</title>
-
-    <link rel="stylesheet" type="text/css" href="style.css">
-
-    <script src="libraries/p5.min.js"></script>
-    <script src="libraries/p5.sound.min.js"></script>
-  </head>
-
-  <body>
-    <script src="sketch.js"></script>
-  </body>
+    <title>2D Convex Hull Visualizer with Pseudocode Highlighting</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+    <script src="main.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+        canvas {
+            border: 1px solid black;
+            margin-top: 10px;
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        button, label, input {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .matrix-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .matrix-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+        }
+        input[type="number"] {
+            width: 50px;
+        }
+        .slider-container {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        input[type="range"] {
+            width: 200px;
+        }
+        .pseudocode-container {
+            margin-top: 20px;
+            text-align: left;
+            width: 60%;
+        }
+        .pseudocode-line {
+            margin: 5px 0;
+            padding: 5px;
+        }
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button id="startBtn" onclick="startJarvisMarch()">Start</button>
+        <button id="pauseBtn" onclick="pause()">Pause</button>
+        <button id="continueBtn" onclick="resume()">Continue</button>
+        <button id="resetBtn" onclick="resetProgram()">Reset All</button>
+        <button id="resetAlgoBtn" onclick="resetAlgorithm()">Reset Algorithm</button>
+    </div>
+    <div class="slider-container">
+        <label for="speedSlider">Speed:</label>
+        <input type="range" id="speedSlider" min="1" max="20" value="10" oninput="updateSpeed()">
+        <span id="speedValue">10</span>
+    </div>
+    <div id="canvas-container"></div>
+    <div class="matrix-container">
+        <h3>3x3 Transformation Matrix</h3>
+        <div class="matrix-inputs">
+            <div>
+                <input id="matrix-a" type="number" value="1" step="0.1">
+                <input id="matrix-b" type="number" value="0" step="0.1">
+                <input id="matrix-tx" type="number" value="0" step="1">
+            </div>
+            <div>
+                <input id="matrix-c" type="number" value="0" step="0.1">
+                <input id="matrix-d" type="number" value="1" step="0.1">
+                <input id="matrix-ty" type="number" value="0" step="1">
+            </div>
+            <div>
+                <input id="matrix-zero1" type="number" value="0" disabled>
+                <input id="matrix-zero2" type="number" value="0" disabled>
+                <input id="matrix-one" type="number" value="1" disabled>
+            </div>
+        </div>
+        <button id="transformBtn" onclick="transformPoints()">Transform Points</button>
+    </div>
+    <div class="pseudocode-container">
+        <h3>Pseudocode:</h3>
+        <div id="line1" class="pseudocode-line">Step 1) Initialize p as leftmost point.</div>
+        <div id="line2" class="pseudocode-line">Step 2) Do following while we don’t come back to the first (or leftmost) point:</div>
+        <div id="line2a" class="pseudocode-line">&nbsp;&nbsp;2.1) The next point q is the point such that the triplet (p, q, r) is counter clockwise for any other point r.</div>
+        <div id="line2a1" class="pseudocode-line">&nbsp;&nbsp;&nbsp;&nbsp;Initialize q as next point, then traverse all points. If orientation(p, i, q) is counter clockwise, update q as i.</div>
+        <div id="line2b" class="pseudocode-line">&nbsp;&nbsp;2.2) Store q as next of p in the output convex hull.</div>
+        <div id="line2c" class="pseudocode-line">&nbsp;&nbsp;2.3) Set p as q for next iteration.</div>
+    </div>
+</body>
 </html>
