@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Certain Convex Hall</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+    <script src="main.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 0;
+        }
+
+        #canvas-matrix-pseudocode-container {
+            display: flex;
+            flex-direction: row; /* Arrange canvas and pseudocode side by side */
+            margin-left: 100px;
+        }
+
+        #canvas-container {
+            margin-right: 20px; /* Add space between canvas and pseudocode */
+        }
+
+        canvas {
+            border: 1px solid black;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        button,
+        label,
+        input {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .matrix-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .matrix-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+        }
+
+        input[type="number"] {
+            width: 50px;
+        }
+
+        .slider-container {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="range"] {
+            width: 200px;
+        }
+
+        .pseudocode-container {
+            width: 450px;
+            text-align: left;
+            margin-left: 50px;
+        }
+
+        .pseudocode-line {
+            margin: 5px 0;
+            padding: 5px;
+        }
+
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+
+        #button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 100px;
+        }
+
+        #matrix-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>A Certain Convex Hall</h1>
+        <p>By Evan Prizel and Aparnaa Senthilnathan<p>
+    </div>
+
+    <div class ="navbar">
+        <ul class="nav-links">
+            <li>
+                <a href="index.html">Home</a>
+                <a href="program.html">Pedigogical Aid</a>
+                <a href="video.html">Video</a>
+                <a class="active" href="references.html" class="right">References</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
