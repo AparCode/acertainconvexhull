@@ -32,7 +32,8 @@ function draw() {
     for (let i = 0; i < points.length; i++) {
         fill(0);
         noStroke();
-        ellipse(points[i].x, points[i].y, 8, 8); // Draw points as circles
+        let point = ellipse(points[i].x, points[i].y, 8, 8); // Draw points as circles
+        point.draggable();
     }
 
     // Draw the convex hull
