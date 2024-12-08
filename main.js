@@ -9,6 +9,7 @@ let checkIndex = 0; // Index of the point being checked
 let speed = 10; // Speed of execution (lower = slower)
 let currentLine = ""; // Current pseudocode line being executed
 let delay = 500; // Default delay between steps in milliseconds
+let hold = -1;
 
 // Helper variable to control execution timing
 let lastExecutionTime = 0;
@@ -33,6 +34,11 @@ function draw() {
         fill(0);
         noStroke();
         let point = ellipse(points[i].x, points[i].y, 8, 8); // Draw points as circles
+    }
+
+    if (hold > -1){
+        points[hold].x = mouseX;
+        points[hold].y = mouseY;
     }
 
     // Draw the convex hull
