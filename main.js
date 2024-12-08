@@ -33,7 +33,6 @@ function draw() {
         fill(0);
         noStroke();
         let point = ellipse(points[i].x, points[i].y, 8, 8); // Draw points as circles
-        point.draggable();
     }
 
     // Draw the convex hull
@@ -79,6 +78,11 @@ function highlightPseudocode() {
     }
 }
 
+function dist(p1, p2){
+    const x = p2[0] - p1[0];
+    const y = p2[1] - p1[1];
+    return sqrt(x**2 + y ** 2);
+}
 // Handle mouse clicks for adding points
 function mousePressed() {
     // Make sure the points are properly formatted based on the origin location
@@ -88,6 +92,20 @@ function mousePressed() {
     if (!isRunning && mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
         points.push(createVector(x, y));
     }
+
+    else{
+        for(let p = 0; p < points.length; p++){
+            let pd = distance(points[p], [x,y]);
+            if (pd < 8){ // size = 8
+                hold = p;
+            } 
+
+        }
+    }
+}
+
+function mouseReleased(){
+    hold = -1;
 }
 
 // Execute the start of the Jarvis March algorithm
