@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="style.css" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
     <script src="main.js"></script>
+
     <style>
-        body {
+        #below-header {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -25,7 +26,6 @@
         #canvas-container {
             margin-right: 20px; /* Add space between canvas and pseudocode */
         }
-
         canvas {
             border: 1px solid black;
         }
@@ -86,7 +86,7 @@
         }
 
         .highlight {
-            background-color: yellow;
+            background-color: #00aeff;
             font-weight: bold;
         }
 
@@ -122,6 +122,10 @@
         </ul>
     </div>
 
+    <h1> Our Program </h1>
+    <p> Click anywhere to add points. Use the buttons to interact. </p>
+
+<div id= "below-header">
     <div id="button-container">
         <div class="controls">
             <button id="startBtn" onclick="startJarvisMarch()">Start</button>
@@ -174,6 +178,7 @@
             </div>
         </div>
     </div>
+</div>
 </body>
 
 </html>

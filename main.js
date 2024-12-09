@@ -2,6 +2,7 @@ let points = []; // Array to store user input points
 let hull = []; // Array to store points forming the convex hull
 let isPaused = false; // Pause state
 let isRunning = false; // Whether Jarvis March is running
+let endHull = false;
 let currentStep = 0; // Current step in the algorithm
 let leftmost; // Leftmost point
 let p, q; // Current and next points in the hull, respectively
@@ -45,8 +46,14 @@ function draw() {
         for (let i = 0; i < hull.length; i++) {
             vertex(hull[i].x, hull[i].y);
         }
+
+        if(endHull){
         vertex(hull[0].x, hull[0].y); // Close the hull
         endShape();
+        }
+        else{
+            endShape();
+        }
     }
 
     // Execute Jarvis March steps with variable speed
@@ -60,9 +67,27 @@ function draw() {
 
     // Update the dragged point's position
     if (draggedPointIndex !== null) {
+        canDrag = 1;
         points[draggedPointIndex].x = mouseX - width / 2;
         points[draggedPointIndex].y = mouseY - height / 2;
         newp = draggedPointIndex;
+
+        // check if the point is past an edge already created (WIP)
+        // for (let p = 0; p < hull.length; p++){
+        //     for (let q = 0; q < hull.length; q++){
+        //         if (hull[p] != points[draggedPointIndex] && hull[q] != points[draggedPointIndex] && p != q){
+        //             if (ccw(points[p], points[draggedPointIndex], points[q]) < 0){
+        //                 canDrag = -1;
+        //             }
+        //         }
+        //     }
+        // }
+        // console.log(canDrag);
+        // if (canDrag <= 1){
+        //     points[draggedPointIndex].x = mouseX - width / 2;
+        //     points[draggedPointIndex].y = mouseY - height / 2;
+        //     newp = draggedPointIndex;
+        // }
     } else {
         newp = p;
     }
@@ -178,6 +203,7 @@ function stepJarvisMarch() {
             // If we've returned to the leftmost point, stop the algorithm
             if (p === leftmost) {
                 isRunning = false;
+                endHull = true;
                 currentLine = ""; // Clear the highlight
 
             // Otherwise, move to the next point in the hull
@@ -252,11 +278,11 @@ function updateSpeed() {
 }
 
 // Clear the canvas and display instructions
-function resetCanvas(fromAlgorithm = true) {
+function resetCanvas() {
     background(240); // Clear the canvas
     fill(0);
     textSize(16);
-    if (!fromAlgorithm) {
-        text('Click anywhere to add points. Use the buttons to interact.', -width / 2 + 10, -height / 2 + 20);
-    }
+    // if (!fromAlgorithm) {
+    //     text('Click anywhere to add points. Use the buttons to interact.', -width / 2 + 10, -height / 2 + 20);
+    // }
 }
