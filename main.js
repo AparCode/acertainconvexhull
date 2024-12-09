@@ -48,8 +48,8 @@ function draw() {
         }
 
         if(endHull){
-        vertex(hull[0].x, hull[0].y); // Close the hull
-        endShape();
+            vertex(hull[0].x, hull[0].y); // Close the hull
+            endShape();
         }
         else{
             endShape();
@@ -282,7 +282,4 @@ function resetCanvas() {
     background(240); // Clear the canvas
     fill(0);
     textSize(16);
-    // if (!fromAlgorithm) {
-    //     text('Click anywhere to add points. Use the buttons to interact.', -width / 2 + 10, -height / 2 + 20);
-    // }
 }
