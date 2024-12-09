@@ -9,41 +9,36 @@ let checkIndex = 0; // Index of the point being checked
 let speed = 10; // Speed of execution (lower = slower)
 let currentLine = ""; // Current pseudocode line being executed
 let delay = 500; // Default delay between steps in milliseconds
-let hold = -1;
 
 // Helper variable to control execution timing
 let lastExecutionTime = 0;
 
-// Setup function to create the canvas
+let draggedPointIndex = null; // Index of the dragged point
+let width = 800;
+let height = 600;
+
 function setup() {
-    const canvas = createCanvas(800, 600);
+    const canvas = createCanvas(width, height);
     canvas.parent('canvas-container');
     resetCanvas(false); // Clear the canvas and display instructions
 }
 
-// Draw function to render the points and hull for each frame
 function draw() {
     translate(width / 2, height / 2); // Set the origin (0,0) to the center of the canvas
     resetCanvas(false); // Clear the canvas and display instructions
 
-    // Highlight the current pseudocode line
     highlightPseudocode();
 
     // Draw all points
     for (let i = 0; i < points.length; i++) {
         fill(0);
         noStroke();
-        let point = ellipse(points[i].x, points[i].y, 8, 8); // Draw points as circles
-    }
-
-    if (hold > -1){
-        points[hold].x = mouseX;
-        points[hold].y = mouseY;
+        ellipse(points[i].x, points[i].y, 8, 8);
     }
 
     // Draw the convex hull
     if (hull.length > 1) {
-        stroke(0); // Black for the hull
+        stroke(0);
         strokeWeight(2);
         noFill();
         beginShape();
@@ -56,11 +51,20 @@ function draw() {
 
     // Execute Jarvis March steps with variable speed
     if (isRunning && !isPaused) {
-        delay = map(speed, 1, 20, 1000, 50); // Set the delay to the value of the speed slider
+        delay = map(speed, 1, 20, 1000, 50);
         if (millis() - lastExecutionTime > delay) {
             stepJarvisMarch();
             lastExecutionTime = millis();
         }
+    }
+
+    // Update the dragged point's position
+    if (draggedPointIndex !== null) {
+        points[draggedPointIndex].x = mouseX - width / 2;
+        points[draggedPointIndex].y = mouseY - height / 2;
+        newp = draggedPointIndex;
+    } else {
+        newp = p;
     }
 
     // Draw the current test line
@@ -69,6 +73,34 @@ function draw() {
         strokeWeight(1);
         line(points[p].x, points[p].y, points[checkIndex].x, points[checkIndex].y);
     }
+}
+
+function mousePressed() {
+    const x = mouseX - width / 2;
+    const y = mouseY - height / 2;
+
+    if ((!isRunning || isPaused) && mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+
+        // Check if the click is on any point
+        for (let i = 0; i < points.length; i++) {
+            const d = dist(x, y, points[i].x, points[i].y);
+            if (d < 8) { // If click is near the point (within 8 pixels)
+                draggedPointIndex = i; // Set this point to be dragged
+                return;
+            }
+        }
+
+        if (draggedPointIndex !== null) {
+            return;
+        }
+
+        // If no point is clicked, add a new point
+        points.push(createVector(x, y));
+    }
+}
+
+function mouseReleased() {
+    draggedPointIndex = null; // Stop dragging
 }
 
 // Highlight pseudocode line
@@ -82,36 +114,6 @@ function highlightPseudocode() {
     if (currentLine) {
         document.getElementById(currentLine).classList.add("highlight");
     }
-}
-
-function dist(p1, p2){
-    const x = p2[0] - p1[0];
-    const y = p2[1] - p1[1];
-    return sqrt(x**2 + y ** 2);
-}
-// Handle mouse clicks for adding points
-function mousePressed() {
-    // Make sure the points are properly formatted based on the origin location
-    const x = mouseX - width / 2;
-    const y = mouseY - height / 2;
-
-    if (!isRunning && mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
-        points.push(createVector(x, y));
-    }
-
-    else{
-        for(let p = 0; p < points.length; p++){
-            let pd = distance(points[p], [x,y]);
-            if (pd < 8){ // size = 8
-                hold = p;
-            } 
-
-        }
-    }
-}
-
-function mouseReleased(){
-    hold = -1;
 }
 
 // Execute the start of the Jarvis March algorithm
