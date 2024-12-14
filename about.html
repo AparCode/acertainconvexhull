@@ -114,72 +114,14 @@
     <div class ="navbar">
         <ul class="nav-links">
             <li>
-                <a class="active"href="index.html">Home</a>
-                <a href="about.html">About</a>
+                <a href="index.html">Home</a>
+                <a class= "active" href="about.html">About</a>
                 <a href="program.html">Pedigogical Aid</a>
                 <a href="video.html">Video</a>
                 <a href="references.html" class="right">References</a>
             </li>
         </ul>
     </div>
-
-    <h1> Our Program </h1>
-    <p> Click anywhere to add points. Use the buttons to interact. </p>
-
-<div id= "below-header">
-    <div id="button-container">
-        <div class="controls">
-            <button id="startBtn" onclick="startJarvisMarch()">Start</button>
-            <button id="pauseBtn" onclick="pause()">Pause</button>
-            <button id="continueBtn" onclick="resume()">Continue</button>
-            <button id="resetBtn" onclick="resetProgram()">Reset All</button>
-            <button id="resetAlgoBtn" onclick="resetAlgorithm()">Reset Algorithm</button>
-        </div>
-        <div class="slider-container">
-            <label for="speedSlider">Speed:</label>
-            <input type="range" id="speedSlider" min="1" max="20" value="10" oninput="updateSpeed()">
-            <span id="speedValue">10</span>
-        </div>
-    </div>
-    <div id="canvas-matrix-pseudocode-container">
-        <div id="canvas-container"> </div>
-        <div id="matrix-container">
-            <div class="matrix-container">
-                <h3>3x3 Transformation Matrix</h3>
-                <div class="matrix-inputs">
-                    <div>
-                        <input id="matrix-a" type="number" value="1" step="0.1">
-                        <input id="matrix-b" type="number" value="0" step="0.1">
-                        <input id="matrix-tx" type="number" value="0" step="1">
-                    </div>
-                    <div>
-                        <input id="matrix-c" type="number" value="0" step="0.1">
-                        <input id="matrix-d" type="number" value="1" step="0.1">
-                        <input id="matrix-ty" type="number" value="0" step="1">
-                    </div>
-                    <div>
-                        <input id="matrix-zero1" type="number" value="0" disabled>
-                        <input id="matrix-zero2" type="number" value="0" disabled>
-                        <input id="matrix-one" type="number" value="1" disabled>
-                    </div>
-                </div>
-                <button id="transformBtn" onclick="transformPoints()">Transform Points</button>
-            </div>
-            <div class="pseudocode-container">
-                <h3>Pseudocode:</h3>
-                <div id="line1" class="pseudocode-line">1) Initialize point P as the leftmost point.</div>
-                <div id="line2" class="pseudocode-line">2) While we aren't back to the starting point, do:</div>
-                <div id="line2a" class="pseudocode-line">  2.1) For all points:</div>
-                <div id="line2a1" class="pseudocode-line">    2.1a) Find which point is the most 
-                          counter-clockwise from P.</div>
-                </div>
-                <div id="line2b" class="pseudocode-line">  2.2) Store q as the point after p 
-                        in the output convex hull.</div>
-                <div id="line2c" class="pseudocode-line">  2.3) Update p as q for next iteration.</div>
-            </div>
-        </div>
-    </div>
-</div>
 
     <h1> Homepage </h1>
     <h2> About </h2>
@@ -205,20 +147,5 @@ We hope this program can impact students, teachers, and professionals looking to
     <li> Week 11-13: Implemented the front-end web design of our project </li>
     <li> Week 14-15: Created our project webpage, cleaned up visuals, implemented the dragging mechanism, and recorded our presentation video/demo </li>
     </ul>
-
-    <h2> Video Link </h2>
-    <p><a href= https://www.youtube.com/watch?v=9uO_7hW-fjA>https://www.youtube.com/watch?v=9uO_7hW-fjA</a></p>
-
-    <h1> References </h1>
-    <h2> Related Work </h2>
-    <ol>
-        <li> Case, Nicky. “The Magnificent 2D Matrix.” It’s Nicky Case!, ncase.me/matrix/. Accessed 13 Dec. 2024.  </li>
-        <li> “The Divide and Conquer Approach.” 3D Convex Hull: Divide and Conquer, cs.rit.edu/~rjb/dac-ch/. Accessed 13 Dec. 2024. </li>
-        <li> Ugenteraan. “Ugenteraan/Jarvis-March-Algorithm: Jarvis’ March or Gift Wrapping Algorithm to Calculate Convex Hull.” GitHub, github.com/Ugenteraan/Jarvis-March-Algorithm. Accessed 13 Dec. 2024. </li>
-    </ol>
-    <h2> Resources </h2>
-    <ol>
-        <li> “Interactive Unit Circle.” Math Is Fun, www.mathsisfun.com/algebra/trig-interactive-unit-circle.html. Accessed 13 Dec. 2024. </li>
-        <li> “Beautiful Free Math.” Desmos, www.desmos.com/. Accessed 13 Dec. 2024. </li>
 </body>
 </html>
